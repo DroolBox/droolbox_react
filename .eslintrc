@@ -1,0 +1,54 @@
+{
+    "extends": "formidable/configurations/es6-react",
+    "env": {
+        "browser": true,
+        "jest": true
+    },
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "import"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "generators": true,
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "rules": {
+        "indent": ["error", 2],
+        "quotes": [2, "single", { "allowTemplateLiterals": true }],
+        "no-magic-numbers": "off",
+        "func-style": "off",
+        "arrow-parens": "off",
+        "no-use-before-define": "off",
+        "react/jsx-filename-extension": "off",
+        "react/jsx-indent-props": ["warn", 2],
+        "react/require-extension": "off",
+        "react/no-multi-comp": "warn",
+        "react/prop-types": "warn",
+        "react/sort-comp": "warn",
+        "react/sort-prop-types": "warn",
+        "react/jsx-no-bind": "warn",
+        "react/no-unused-prop-types": 1,
+        "consistent-this": ["error", "that"],
+        "new-cap": 0,
+        "camelcase": "off",
+        "filenames/match-regex": "off",
+        "no-nested-ternary": "off",
+        "no-invalid-this": "off",
+        "max-params": ["warn", 6],
+        "consistent-return": "off",
+        "complexity": "off",
+        "max-statements": "off",
+        "no-useless-escape": "off",
+        "array-callback-return": "off"
+    },
+    "globals": {
+        "window": false,
+        "__dirname": false
+    }
+}
