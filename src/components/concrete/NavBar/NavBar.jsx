@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Collapse,
@@ -29,7 +30,12 @@ export default class NavBar extends PureComponent {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Droolbox</NavbarBrand>
+          <NavbarBrand
+            to="/"
+            tag={Link}
+          >
+            Droolbox
+          </NavbarBrand>
           <NavbarToggler
             onClick={this.handleToggle}
           />
@@ -38,7 +44,8 @@ export default class NavBar extends PureComponent {
               <NavItem>
                 <NavLink
                   className="mx-4"
-                  href="/chat"
+                  to="/chat"
+                  tag={Link}
                 >
                   Chat
                 </NavLink>
@@ -46,7 +53,8 @@ export default class NavBar extends PureComponent {
               <NavItem>
                 <NavLink
                   className="mx-4"
-                  href="/login"
+                  to="/login"
+                  tag={Link}
                 >
                   Login
                 </NavLink>
@@ -54,7 +62,8 @@ export default class NavBar extends PureComponent {
               <NavItem>
                 <NavLink
                   className="btn btn-secondary text-white ml-4"
-                  href="/get-started"
+                  to="/get-started"
+                  tag={Link}
                 >
                   Get Started
                 </NavLink>
