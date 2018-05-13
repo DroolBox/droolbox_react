@@ -1,6 +1,6 @@
 
 import React, { PureComponent } from 'react';
-import { func } from 'prop-types';
+import { node } from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import decode from 'jwt-decode';
 
@@ -27,7 +27,7 @@ const checkAuth = () => {
 
 export default class Auth extends PureComponent {
   static propTypes = {
-    component: func
+    component: node
   }
 
   renderComponent = () => {
@@ -41,7 +41,7 @@ export default class Auth extends PureComponent {
     return (
       <Route
         {...this.props}
-        component={this.renderComponent}
+        render={this.renderComponent}
       />
     );
   }

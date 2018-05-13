@@ -30,15 +30,13 @@ class Login extends PureComponent {
   async handleSignIn(e) {
     e.preventDefault();
     if (this.validate()) {
-      // const { history } = this.props;
+      const { history } = this.props;
       try {
         await this.props.mutate({
           variables: this.state
         });
-        console.log('login successful!');
-        // history.push('/auth');
+        history.push('/auth');
       } catch (err) {
-        console.log('login failed!');
         console.log(err);
       }
     }

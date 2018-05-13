@@ -2,16 +2,22 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ApolloClient from 'apollo-boost';
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
 import { ApolloProvider } from 'react-apollo';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
 import App from './App.jsx';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql'
+  link: createHttpLink({
+    uri: 'http://localhost:4000/graphql',
+    credentials: 'include'
+  }),
+  cache: new InMemoryCache()
 });
 
 ReactDOM.render(
@@ -20,4 +26,4 @@ ReactDOM.render(
   </ApolloProvider>,
   document.getElementById('root')
 );
-registerServiceWorker();
+// registerServiceWorker();

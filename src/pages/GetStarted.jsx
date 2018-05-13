@@ -1,10 +1,14 @@
 
+/* eslint-disable no-console */
+
 import React, { PureComponent } from 'react';
 
-export default class GetStarted extends PureComponent {
+class GetStarted extends PureComponent {
   render() {
     return (
-      <div>GetStarted</div>
+      <div>Get Started</div>
     );
   }
 }
+
+export default GetStarted;

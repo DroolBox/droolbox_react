@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { AuthRoute } from './routes/index';
@@ -11,7 +11,7 @@ import GetStarted from './pages/GetStarted.jsx';
 import Auth from './pages/Auth.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 
-export default class App extends Component {
+export default class App extends PureComponent {
   render() {
     return (
       <main className="py-4">
