@@ -2,14 +2,12 @@
 /* eslint-disable no-console */
 
 import React, { Fragment, PureComponent } from 'react';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { compose, graphql } from 'react-apollo';
+
+import { TOKEN, REFRESH_TOKEN } from '../constants';
+import login from '../graphql/login';
 
 class Login extends PureComponent {
-  static propTypes = {
-
-  }
-
   constructor() {
     super();
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,12 +28,15 @@ class Login extends PureComponent {
   async handleSignIn(e) {
     e.preventDefault();
     if (this.validate()) {
-      const { history } = this.props;
       try {
-        await this.props.mutate({
+        const { data: { login: { token, refreshToken } } } = await this.props.login({
           variables: this.state
         });
-        history.push('/auth');
+
+        localStorage.setItem(TOKEN, token);
+        localStorage.setItem(REFRESH_TOKEN, refreshToken);
+
+        this.props.history.push('/account');
       } catch (err) {
         console.log(err);
       }
@@ -103,10 +104,6 @@ class Login extends PureComponent {
   }
 }
 
-const mutation = gql `
-  mutation($email: String!, $password: String!) {
-    login(email: $email, password: $password)
-  }
-`;
-
-export default graphql(mutation)(Login);
+export default compose(
+  graphql(login, { name: 'login' })
+)(Login);

@@ -1,33 +1,15 @@
 
+/* eslint-disable no-console */
+
 import React, { PureComponent } from 'react';
-import { node } from 'prop-types';
+import { func } from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
-import decode from 'jwt-decode';
 
-const checkAuth = () => {
-  const token = localStorage.getItem('token');
-  const refreshToken = localStorage.getItem('refreshToken');
-  if (!token || !refreshToken) {
-    return false;
-  }
-
-  try {
-    // { exp: 12903819203 }
-    const { exp } = decode(refreshToken);
-
-    if (exp < new Date().getTime() / 1000) {
-      return false;
-    }
-  } catch (e) {
-    return false;
-  }
-
-  return true;
-};
+import { checkAuth } from '../auth';
 
 export default class Auth extends PureComponent {
   static propTypes = {
-    component: node
+    component: func
   }
 
   renderComponent = () => {
@@ -41,7 +23,7 @@ export default class Auth extends PureComponent {
     return (
       <Route
         {...this.props}
-        render={this.renderComponent}
+        component={this.renderComponent}
       />
     );
   }

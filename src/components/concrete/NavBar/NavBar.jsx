@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+
+import { checkAuth, handleLogout } from '../../../auth';
 
 import {
   Collapse,
@@ -11,16 +13,16 @@ import {
   NavLink
 } from 'reactstrap';
 
-export default class NavBar extends PureComponent {
-  constructor() {
-    super();
-    this.handleToggle = this.handleToggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
+class NavBar extends PureComponent {
+  state = {
+    isOpen: false
   }
 
-  handleToggle() {
+  handleLogout = () => {
+    handleLogout(this.props.history);
+  }
+
+  handleToggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
@@ -50,14 +52,42 @@ export default class NavBar extends PureComponent {
                   Chat
                 </NavLink>
               </NavItem>
+              {
+                checkAuth()
+                && (
+                  <NavLink
+                    className="mx-4"
+                    to="/account"
+                    tag={Link}
+                  >
+                    Account
+                  </NavLink>
+                )
+              }
               <NavItem>
-                <NavLink
-                  className="mx-4"
-                  to="/login"
-                  tag={Link}
-                >
-                  Login
-                </NavLink>
+                {
+                  checkAuth()
+                    ? (
+                      <a
+                        className="mx-4 nav-link"
+                        onClick={this.handleLogout}
+                        style={{
+                          cursor: 'pointer'
+                        }}
+                      >
+                        Logout
+                      </a>
+                    )
+                    : (
+                      <NavLink
+                        className="mx-4"
+                        to="/login"
+                        tag={Link}
+                      >
+                        Login
+                      </NavLink>
+                    )
+                }
               </NavItem>
               <NavItem>
                 <NavLink
@@ -75,3 +105,5 @@ export default class NavBar extends PureComponent {
     );
   }
 }
+
+export default withRouter(NavBar);
