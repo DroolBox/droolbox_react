@@ -29,6 +29,7 @@ class NavBar extends PureComponent {
   }
 
   render() {
+    const { currentAccount } = this.props;
     return (
       <div>
         <Navbar color="light" light expand="md">
@@ -53,7 +54,7 @@ class NavBar extends PureComponent {
                 </NavLink>
               </NavItem>
               {
-                checkAuth()
+                checkAuth(currentAccount)
                 && (
                   <NavLink
                     className="mx-4"
@@ -66,7 +67,7 @@ class NavBar extends PureComponent {
               }
               <NavItem>
                 {
-                  checkAuth()
+                  checkAuth(currentAccount)
                     ? (
                       <a
                         className="mx-4 nav-link"

@@ -2,13 +2,11 @@
 /* eslint-disable no-console */
 
 import React, { PureComponent } from 'react';
-import { compose, graphql } from 'react-apollo';
 
-import getCurrentAccount from '../graphql/getCurrentAccount';
-
-class Account extends PureComponent {
+export default class Account extends PureComponent {
   render() {
     const { currentAccount } = this.props;
+    console.log(currentAccount);
     // const { currentAccount: { email, firstName, lastName } } = this.props;
     return (
       <div className="row">
@@ -20,14 +18,3 @@ class Account extends PureComponent {
     );
   }
 }
-
-export default compose(
-  graphql(getCurrentAccount, {
-    options: {
-      fetchPolicy: 'network-only'
-    },
-    props: ({ data: { currentAccount } }) => ({
-      currentAccount
-    })
-  })
-)(Account);

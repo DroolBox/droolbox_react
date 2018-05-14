@@ -29,3 +29,7 @@ export const handleLogout = history => {
   localStorage.removeItem(TOKEN);
   history.push('/');
 };
+
+export const validateTokens = () => {
+
+};
