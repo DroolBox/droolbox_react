@@ -1,4 +1,6 @@
 
+/* eslint-disable no-console */
+
 import decode from 'jwt-decode';
 
 import { TOKEN, REFRESH_TOKEN } from '../constants';
@@ -14,10 +16,7 @@ export const checkAuth = () => {
     const decodedToken = decode(refreshToken);
 
     if (decodedToken.exp < new Date().getTime() / 1000) {
-      const decodedRefreshToken = decode(refreshToken);
-      if (decodedRefreshToken.exp < new Date().getTime() / 1000) {
-        return false;
-      }
+      return false;
     }
   } catch (e) {
     return false;
